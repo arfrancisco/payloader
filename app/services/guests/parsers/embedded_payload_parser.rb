@@ -1,13 +1,15 @@
 module Guests
   class Parsers::EmbeddedPayloadParser
     def call(payload)
-      indifferent_payload = payload.with_indifferent_access
+      validated_payload = Schemas::EmbeddedPayload.call(payload)
+      
+      return validated_payload.errors.to_h unless validated_payload.success?
 
       {
-        email: indifferent_payload[:reservation][:guest_email],
-        first_name: indifferent_payload[:reservation][:guest_first_name],
-        last_name: indifferent_payload[:reservation][:guest_last_name],
-        phone: indifferent_payload[:reservation][:guest_phone_numbers].join(', '),
+        email: validated_payload[:reservation][:guest_email],
+        first_name: validated_payload[:reservation][:guest_first_name],
+        last_name: validated_payload[:reservation][:guest_last_name],
+        phone: validated_payload[:reservation][:guest_phone_numbers].join(', '),
       }
     end
   end

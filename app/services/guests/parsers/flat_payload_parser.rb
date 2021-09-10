@@ -1,13 +1,15 @@
 module Guests
   class Parsers::FlatPayloadParser
     def call(payload)
-      indifferent_payload = payload.with_indifferent_access
+      validated_payload = Schemas::FlatPayload.call(payload)
+
+      return validated_payload.errors.to_h unless validated_payload.success?
 
       {
-        email: indifferent_payload[:guest][:email],
-        first_name: indifferent_payload[:guest][:first_name],
-        last_name: indifferent_payload[:guest][:last_name],
-        phone: indifferent_payload[:guest][:phone],
+        email: validated_payload[:guest][:email],
+        first_name: validated_payload[:guest][:first_name],
+        last_name: validated_payload[:guest][:last_name],
+        phone: validated_payload[:guest][:phone],
       }
     end
   end
