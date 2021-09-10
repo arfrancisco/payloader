@@ -1,5 +1,5 @@
 module Reservations
-  class Parsers::FlatReservationPayloadParser
+  class Parsers::FlatPayloadParser
     def call(payload)
       indifferent_payload = payload.with_indifferent_access
 
@@ -15,7 +15,7 @@ module Reservations
         status: indifferent_payload[:status],
         currency: indifferent_payload[:currency],
         payout_price: indifferent_payload[:payout_price].to_f,
-        security_price: indifferent_payload[:security_price]to_f,
+        security_price: indifferent_payload[:security_price].to_f,
         total_price: indifferent_payload[:total_price].to_f,
         notes: ""
       }

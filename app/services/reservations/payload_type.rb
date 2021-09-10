@@ -12,7 +12,7 @@ module Reservations
       indifferent_payload = payload.with_indifferent_access
       
       return FLAT if indifferent_payload.key?(:reservation_code) 
-      return EMBEDDED if indifferent_payload.key?(:reservations) 
+      return EMBEDDED if indifferent_payload.key?(:reservation) 
     end
   end
 end

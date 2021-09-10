@@ -1,11 +1,11 @@
 module Reservations
-  class Processors::GuestProcessor
+  class Parsers::PayloadParser
     def call(payload)
       case payload_type(payload)
       when Reservations::PayloadType::FLAT
-        return 'FlatGuestPayloadProcessor'
+        return Parsers::FlatPayloadParser
       when Reservations::PayloadType::EMBEDDED
-        return 'EmbeddedGuestPayloadProcessor'
+        return Parsers::EmbeddedPayloadParser
       else
         raise 'Unsupported payload type'
       end

@@ -14,7 +14,7 @@ class ReservationsController < ApplicationController
       "first_name": "Wayne",
       "last_name": "Woodbridge",
       "phone": "639123456789",
-      "email": "wayne_woodbridge@bnb.com"
+      "email": "flat.wayne_woodbridge@bnb.com"
       },
       "currency": "AUD",
       "payout_price": "4200.00",
@@ -34,7 +34,7 @@ class ReservationsController < ApplicationController
       "number_of_children": 2,
       "number_of_infants": 0
       },
-      "guest_email": "wayne_woodbridge@bnb.com",
+      "guest_email": "emb.wayne_woodbridge@bnb.com",
       "guest_first_name": "Wayne",
       "guest_last_name": "Woodbridge",
       "guest_phone_numbers": [
@@ -50,7 +50,7 @@ class ReservationsController < ApplicationController
       }
     }
 
-    result = Reservations::ProcessReservation.new.(flat_payload)
+    result = ProcessReservation.new.(flat_payload)
     
     render json: result
   end

@@ -1,5 +1,5 @@
 module Reservations
-  class Parsers::EmbeddedReservationPayloadParser
+  class Parsers::EmbeddedPayloadParser
     def call(payload)
       indifferent_payload = payload.with_indifferent_access
 
@@ -15,7 +15,7 @@ module Reservations
         status: indifferent_payload[:reservation][:status_type],
         currency: indifferent_payload[:reservation][:host_currency],
         payout_price: indifferent_payload[:reservation][:expected_payout_amount].to_f,
-        security_price: indifferent_payload[:reservation][:listing_security_price_accurate]to_f,
+        security_price: indifferent_payload[:reservation][:listing_security_price_accurate].to_f,
         total_price: indifferent_payload[:reservation][:total_paid_amount_accurate].to_f,
         notes: indifferent_payload[:reservation][:guest_details][:localized_description]
       }

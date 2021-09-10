@@ -1,5 +1,5 @@
-module Reservations
-  class Parsers::FlatGuestPayloadParser
+module Guests
+  class Parsers::FlatPayloadParser
     def call(payload)
       indifferent_payload = payload.with_indifferent_access
 
