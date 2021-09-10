@@ -1,8 +1,10 @@
 FROM ruby:2.7.0
 
+RUN mkdir -p /payloader
+WORKDIR /payloader
+
 RUN apt-get update -qq && apt-get install -y ruby-dev nodejs postgresql-client
 
-WORKDIR /payloader
 COPY Gemfile* /payloader/
 RUN bundle install
 

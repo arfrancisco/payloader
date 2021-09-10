@@ -1,24 +1,13 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Assuming you have docker engine installed
 
-Things you may want to cover:
+- Move to payloader root directory
+- run '$ docker-compose build' 
+- run '$ docker-compose up'
+- run '$ docker-compose run server rake db:create'
+- run '$ docker-compose run server rake db:migrate'
 
-* Ruby version
+At this point the server should be running and ready for testing.
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+The reservations endpoint should be on 'localhost:3000/reservations'. 
