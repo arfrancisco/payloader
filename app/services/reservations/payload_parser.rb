@@ -1,5 +1,5 @@
-module Guests
-  class Parsers::PayloadParser
+module Reservations
+  class PayloadParser
     def call(payload)
       case payload_type(payload)
       when Reservations::PayloadType::FLAT

@@ -15,7 +15,11 @@ module Reservations
         payout_price: payload[:reservation][:expected_payout_amount].to_f,
         security_price: payload[:reservation][:listing_security_price_accurate].to_f,
         total_price: payload[:reservation][:total_paid_amount_accurate].to_f,
-        notes: payload[:reservation][:guest_details][:localized_description]
+        notes: payload[:reservation][:guest_details][:localized_description],
+        email: payload[:reservation][:guest_email],
+        first_name: payload[:reservation][:guest_first_name],
+        last_name: payload[:reservation][:guest_last_name],
+        phone: payload[:reservation][:guest_phone_numbers].join(', '),
       }
     end
   end

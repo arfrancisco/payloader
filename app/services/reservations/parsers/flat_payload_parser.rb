@@ -15,7 +15,11 @@ module Reservations
         payout_price: payload[:payout_price].to_f,
         security_price: payload[:security_price].to_f,
         total_price: payload[:total_price].to_f,
-        notes: ""
+        notes: "",
+        email: payload[:guest][:email],
+        first_name: payload[:guest][:first_name],
+        last_name: payload[:guest][:last_name],
+        phone: payload[:guest][:phone],
       }
     end
   end
