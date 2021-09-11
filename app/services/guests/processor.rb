@@ -1,6 +1,7 @@
 module Guests
   class Processor
     include PayloaderTransaction
+    # Uses a validated and parsed payload to persist a guest record
 
     ATTRIBUTES = %i[
       email

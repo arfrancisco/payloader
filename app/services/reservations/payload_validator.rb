@@ -1,5 +1,8 @@
 module Reservations
   class PayloadValidator
+    # Dictates what schema to use for validating the raw payload 
+    #  depending on the payload type
+
     def call(payload)
       case payload_type(payload)
       when Reservations::PayloadType::FLAT

@@ -1,5 +1,7 @@
 module Reservations
   class Parsers::FlatPayloadParser
+    # Parses the raw payload into our own model attributes 
+    
     def call(payload)
       {
         code: payload[:reservation_code],
@@ -24,3 +26,26 @@ module Reservations
     end
   end
 end
+
+# Flat Payload sample
+# {
+#   "reservation_code": "YYY12345678",
+#   "start_date": "2021-04-14",
+#   "end_date": "2021-04-18",
+#   "nights": 4,
+#   "guests": 4,
+#   "adults": 2,
+#   "children": 2,
+#   "infants": 0,
+#   "status": "accepted",
+#   "guest": {
+#   "first_name": "Wayne",
+#   "last_name": "Woodbridge",
+#   "phone": "639123456789",
+#   "email": "wayne_woodbridge@bnb.com"
+#   },
+#   "currency": "AUD",
+#   "payout_price": "4200.00",
+#   "security_price": "500",
+#   "total_price": "4700.00"
+# }

@@ -1,5 +1,7 @@
 module Reservations
   class PayloadParser
+    # Dictates what parser class to use based on payload type
+    
     def call(payload)
       case payload_type(payload)
       when Reservations::PayloadType::FLAT

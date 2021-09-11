@@ -1,6 +1,7 @@
 module Reservations
   class Processor
     include PayloaderTransaction
+    # Uses a validated and parsed payload to persist a reservation record
 
     ATTRIBUTES = %i[
       code

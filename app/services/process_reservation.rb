@@ -5,6 +5,7 @@ class ProcessReservation
   #   before processing the reservation
 
   def call(payload)
+    Guests::Processor.new.call(payload)
     Reservations::Processor.new.call(payload)
   end
 end

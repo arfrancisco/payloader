@@ -1,3 +1,3 @@
 Rails.application.routes.draw do
-  get "reservations" => "reservations#index"
+  get "process_reservations" => "reservations#process"
 end
