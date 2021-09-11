@@ -10,7 +10,7 @@ module Reservations
       when Reservations::PayloadType::EMBEDDED
         return Schemas::EmbeddedPayload
       else
-        raise 'Unsupported payload type'
+        raise UnsupportedPayloadType
       end
     end
 
@@ -23,3 +23,5 @@ module Reservations
     end
   end
 end
+
+class UnsupportedPayloadType < StandardError;end

@@ -378,6 +378,61 @@ describe ProcessReservation do
   end
 
   context 'invalid payloads' do
+    it 'rejects unsupported payloads' do
+      result = described_class.new.call({ res: 'what?' })
 
+      expect(result).to be_failure
+      expect(result.failure).to eq(:unsupported_payload)
+    end
+
+    context 'missing fields' do
+      context 'flat payload' do
+        it 'provides list of missing fields' do
+          result = described_class.new.call({ "reservation_code": 'magic_code' })
+
+          expect(result).to be_failure
+          expect(result.failure.keys).to include(
+            :start_date,
+            :end_date,
+            :nights,
+            :guests,
+            :adults,
+            :children,
+            :infants,
+            :status,
+            :currency,
+            :payout_price,
+            :security_price,
+            :total_price,
+            :guest
+          )
+        end
+      end
+
+      context 'embedded payload' do
+        it 'provides list of missing fields' do
+          result = described_class.new.call({ "reservation": { } })
+
+          expect(result).to be_failure
+          expect(result.failure[:reservation].keys).to include(
+            :code,
+            :start_date,
+            :end_date,
+            :nights,
+            :number_of_guests,
+            :status_type,
+            :host_currency,
+            :expected_payout_amount,
+            :listing_security_price_accurate,
+            :total_paid_amount_accurate,
+            :guest_first_name,
+            :guest_last_name,
+            :guest_email,
+            :guest_phone_numbers,
+            :guest_details
+          )
+        end
+      end
+    end
   end
 end

@@ -27,17 +27,19 @@ module Reservations
        
       parsed_payload = parse_payload(validated_payload)      
 
-      existing_guest = Guest.where(email: parsed_payload[:email]).first
+      guest = Guest.where(email: parsed_payload[:email]).first
       
-      return Failure('Guest record not found') if existing_guest.nil?
+      return Failure('Guest record not found') if guest.nil?
       
       existing_reservation = Reservation.where(code: parsed_payload[:code]).first
 
       if existing_reservation
-        Transactions::Update.new.call(existing_reservation.id, parsed_payload.slice(*ATTRIBUTES))
+        Transactions::Update.new.call(existing_reservation.id, parsed_payload.slice(*ATTRIBUTES).merge(guest_id: guest.id))
       else
-        Transactions::Create.new.call(parsed_payload.slice(*ATTRIBUTES).merge(guest_id: existing_guest.id))
+        Transactions::Create.new.call(parsed_payload.slice(*ATTRIBUTES).merge(guest_id: guest.id))
       end
+    rescue UnsupportedPayloadType
+      Failure(:unsupported_payload)
     end
 
     private

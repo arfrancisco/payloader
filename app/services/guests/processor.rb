@@ -24,6 +24,8 @@ module Guests
       else
         Transactions::Create.new.call(parsed_payload.slice(*ATTRIBUTES))
       end
+    rescue UnsupportedPayloadType
+      Failure(:unsupported_payload)
     end
 
     private
