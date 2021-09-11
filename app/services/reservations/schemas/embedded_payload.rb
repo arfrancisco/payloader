@@ -11,6 +11,10 @@ module Reservations
       required(:expected_payout_amount).filled(:float)
       required(:listing_security_price_accurate).filled(:float)
       required(:total_paid_amount_accurate).filled(:float)
+      required(:guest_first_name).filled(:string)
+      required(:guest_last_name).filled(:string)
+      required(:guest_email).filled(:string)
+      required(:guest_phone_numbers).array(:str?)
       
       required(:guest_details).hash do
         required(:number_of_adults).filled(:integer)

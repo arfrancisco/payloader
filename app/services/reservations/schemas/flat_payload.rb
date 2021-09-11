@@ -13,5 +13,12 @@ module Reservations
     required(:payout_price).filled(:float)
     required(:security_price).filled(:float)
     required(:total_price).filled(:float)
+
+    required(:guest).hash do
+      required(:first_name).filled(:string)
+      required(:last_name).filled(:string)
+      required(:email).filled(:string)
+      required(:phone).filled(:string)
+    end
   end
 end

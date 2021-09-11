@@ -9,10 +9,8 @@ module Reservations
     ]
 
     def call(payload)
-      indifferent_payload = payload.with_indifferent_access
-      
-      return FLAT if indifferent_payload.key?(:reservation_code) 
-      return EMBEDDED if indifferent_payload.key?(:reservation) 
+      return FLAT if payload.key?(:reservation_code) 
+      return EMBEDDED if payload.key?(:reservation)
     end
   end
 end

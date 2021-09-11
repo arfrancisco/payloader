@@ -7,6 +7,8 @@ gem 'rails', '~> 6.1.4', '>= 6.1.4.1'
 gem 'pg'
 gem 'puma', '~> 5.0'
 gem 'dry-schema', '~> 1.7', '>= 1.7.1'
+gem 'dry-monads', '~> 1.4'
+gem 'dry-matcher', '~> 0.9.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
